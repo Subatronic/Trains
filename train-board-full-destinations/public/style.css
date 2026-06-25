@@ -11,7 +11,7 @@
   --good: #4ade80;
   --warn: #fbbf24;
   --bad: #fb7185;
-  --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  --shadow: 0 24px 80px rgba(101, 30, 56, 0.35);
 }
 
 * { box-sizing: border-box; }
