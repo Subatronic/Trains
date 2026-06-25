@@ -1,45 +1,21 @@
-# Trafikverket Live Train Board
-
-A polished train arrivals/departures webpage powered by Trafikverket's Open API.
-
-## Features
-
-- Autocomplete station search by name or signature, with click and keyboard selection
-- Toggle departures and arrivals
-- Live estimated times and delay status
-- Track/platform display
-- Cancelled-train highlighting
-- Favorites saved in the browser
-- Auto-refresh every 30 seconds
-- Fullscreen station-board mode
-- Responsive dark UI
-- API key is kept on the server, never in frontend JavaScript
-
-## Setup
-
-```bash
-npm install
-cp .env.example .env
-```
-
-Open `.env` and add your Trafikverket API key:
-
-```bash
-TRAFIKVERKET_API_KEY=your_key_here
-```
-
-Start the app:
-
-```bash
-npm start
-```
-
-Then open:
-
-```text
-http://localhost:3000
-```
-
-## Notes
-
-Trafikverket station searches use `TrainStation`. Timetable rows use `TrainAnnouncement`.
+{
+  "name": "trafikverket-train-board",
+  "version": "1.0.0",
+  "description": "A live arrivals and departures board using Trafikverket's open API.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
