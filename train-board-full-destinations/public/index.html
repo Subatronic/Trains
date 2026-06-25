@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trafikverket Live Train Board</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Trafikverket Open API</p>
+        <h1>Live train board</h1>
+        <p class="subtitle">Arrivals, departures, delays and tracks for Swedish train stations.</p>
+      </div>
+      <div class="clock" aria-live="polite">
+        <span id="clockTime">--:--</span>
+        <small id="clockDate">Loading</small>
+      </div>
+    </header>
+
+    <main class="panel">
+      <section class="controls" aria-label="Search controls">
+        <label class="field station-field">
+          <span>Station</span>
+          <div class="combo">
+            <input id="stationSearch" autocomplete="off" placeholder="Type a station name, e.g. Jönköping" aria-controls="stationResults" aria-expanded="false" aria-autocomplete="list" />
+            <button id="favoriteBtn" type="button" title="Save favorite station" aria-label="Save favorite station">☆</button>
+          </div>
+          <div id="stationResults" class="station-results" role="listbox" hidden></div>
+          <p class="field-help">Start typing a station name or code, then choose one from the suggestions.</p>
+        </label>
+
+        <label class="field compact">
+          <span>Board</span>
+          <select id="activityType">
+            <option value="Avgang">Departures</option>
+            <option value="Ankomst">Arrivals</option>
+          </select>
+        </label>
+
+        <label class="field compact">
+          <span>Next</span>
+          <select id="hoursAhead">
+            <option value="2">2 hours</option>
+            <option value="4">4 hours</option>
+            <option value="8" selected>8 hours</option>
+            <option value="12">12 hours</option>
+          </select>
+        </label>
+
+        <button id="refreshBtn" class="primary" type="button">Refresh</button>
+        <button id="fullscreenBtn" class="ghost" type="button">Board mode</button>
+      </section>
+
+      <section id="favorites" class="favorites" aria-label="Favorite stations"></section>
+
+      <section class="status-strip">
+        <div>
+          <strong id="currentStationName">Jönköping C</strong>
+          <span id="currentStationSignature">Jö</span>
+        </div>
+        <div id="lastUpdated">Not updated yet</div>
+      </section>
+
+      <section class="table-wrap" aria-live="polite">
+        <table>
+          <thead>
+            <tr>
+              <th>Train</th>
+              <th id="directionHeading">Destination</th>
+              <th>Scheduled</th>
+              <th>Estimated</th>
+              <th>Track</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="trainRows">
+            <tr><td colspan="6" class="empty">Loading trains…</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <p class="hint">Auto-refreshes every 30 seconds. Data comes from Trafikverket's TrainAnnouncement and TrainStation APIs.</p>
+    </main>
+  </div>
+
+  <template id="stationOptionTemplate">
+    <button type="button" class="station-option">
+      <strong></strong>
+      <span></span>
+    </button>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
